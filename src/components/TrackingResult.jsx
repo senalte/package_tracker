@@ -5,7 +5,7 @@ const TrackingResult = () => {
     const data = trackingInfo.data[0];
     const { packageInfo, isError, isPending, isSuccess, fetchPackageInfo } =
         useGetDatas();
-    console.log("result", packageInfo);
+
     return (
         <div className="bg-white shadow-md rounded-md p-6 max-w-xl mx-auto">
             {trackingInfo ? (

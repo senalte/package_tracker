@@ -12,13 +12,13 @@ const InputSection = () => {
     };
     return (
         <div
-            className="p-4 bg-white rounded-md flex flex-col gap-4 items-center
-    text-center px-4 shadow-md"
+            className="bg-white rounded-md flex flex-col gap-4 items-center
+        text-center  p-10 shadow-md"
         >
             <p className="font-bold font-poppins text-gray-700">
                 Track your shipment.
             </p>
-            <div>
+            <div className="flex flex-col">
                 <input
                     ref={inputRef}
                     type="text"
