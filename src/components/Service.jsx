@@ -10,7 +10,7 @@ const Service = ({ serviceInfo }) => {
                 </p>
             </div>
             <div className="py-4">
-                <h1 className="text-2xl font-bold">{serviceInfo.title}</h1>
+                <h1 className="text-2xl font-bold my-1.5">{serviceInfo.title}</h1>
                 <p>{serviceInfo.description}</p>
                 <ul className="pt-2">
                     {serviceInfo.services.map((service, ind) => (
