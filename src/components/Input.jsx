@@ -1,10 +1,13 @@
-import { useState, useRef } from "react";
-import { useGetDatas } from "../Services/useGetDatas";
+import { useRef } from "react";
+ 
+import { usePackage } from "../Contexts/packageContext";
+
 const InputSection = () => {
     const inputRef = useRef(null);
-    const { packageInfo, isError, isPending, isSuccess, fetchPackageInfo } =
-        useGetDatas();
-
+   
+    const { fetchPackageInfo } = usePackage();
+    
+    
     const handleSearch = () => {
         const trackingCode = inputRef.current.value;
         fetchPackageInfo(trackingCode);

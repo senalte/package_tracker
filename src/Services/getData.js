@@ -5,9 +5,9 @@ export async function fetchPackage(trackingCode) {
         .from("packages")
         .select("*")
         .eq("tracking_code", trackingCode)
-        .single();
+        
 
     if (error) throw error;
-    //console.log(packageData);
+
     return packageData;
 }

@@ -1,19 +1,31 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchPackage } from "./getData";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+
+import { handleTrack } from "./handleTracking";
 
 export const useGetDatas = () => {
     //const queryClient = useQueryClient();
+
     const {
-        data: packageInfo,
+        data,
         isError,
         isPending,
         isSuccess,
         mutate: fetchPackageInfo
     } = useMutation({
-        mutationFn: fetchPackage,
-        onError:()=>{},
-        onSuccess: ()=>{}
+        mutationFn: handleTrack,
+        onError: () => {},
+        onSuccess: () => {}
     });
 
-    return { packageInfo, isError, isPending, isSuccess, fetchPackageInfo };
+    const packageInfo = data?.packageInfo;
+    const events = data?.events;
+
+    return {
+        packageInfo,
+        events,
+        isError,
+        isPending,
+        isSuccess,
+        fetchPackageInfo
+    };
 };

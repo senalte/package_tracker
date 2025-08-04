@@ -1,12 +1,14 @@
 const EmptyInfo = () => {
     return (
         <>
-            <p className="font-bolbd uppercase mb-4">Nothing to show here.</p>
+            <p className="font-semibold uppercase mb-4 text-center text-gray-600">
+                Nothing to show here.
+            </p>
             <p
-                className="py-2 px-6 bg-gray-100 text-center
-                    rounded-md hover:bg-gray-400 transition"
+                className="py-4 px-6 bg-gray-100 text-center
+                    rounded-md"
             >
-                Start tracking now!
+                Add your tracking code to the input field now!
             </p>
         </>
     );
