@@ -5,11 +5,12 @@ import { dateFormater } from "../Services/dateFormat";
 const TrackingResult = () => {
     const { isPending, packageInfo, events } = usePackage();
 
-    if (!isPending && !packageInfo) <Loader />;
-    
+    if (isPending) {
+        return <Loader />;
+    }
     return (
         <div className="bg-white shadow-md rounded-md w-full md:w-auto p-6 max-w-xl mx-auto">
-            {!isPending && !packageInfo ? (
+            {!isPending && !packageInfo?.id ? (
                 <EmptyInfo />
             ) : (
                 <>
@@ -36,7 +37,8 @@ const TrackingResult = () => {
                             {packageInfo?.origin}
                         </p>
                         <p>
-                            <span className="font-semibold">Created on:</span>{" "}
+                            <span className="font-semibold">Created on:</span>
+                            {""} {dateFormater(packageInfo?.created_at)}
                         </p>
                         <p>
                             <span className="font-semibold">Shipping to:</span>{" "}
@@ -46,7 +48,24 @@ const TrackingResult = () => {
                             <span className="font-semibold">
                                 Delivery date:
                             </span>{" "}
+                            {dateFormater(packageInfo?.estimated_delivery)}
                         </p>
+                    </div>
+                    <div className="border-l-2 border-gray-200 pl-4">
+                        {events.map(event => (
+                            <div className="mb-6">
+                                <p>
+                                    <span>{event.icon}</span>
+                                    <span className="font-semibold">
+                                        {event.status}
+                                    </span>{" "}
+                                    — {event.location}
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                    {dateFormater(event.datetime)}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </>
             )}
@@ -55,48 +74,3 @@ const TrackingResult = () => {
 };
 
 export default TrackingResult;
-
-const PackageData = () => {
-    return <p></p>;
-};
-
-/*
-{
-
-  {dateFormater(packageInfo?.estimated_delivery)}
-  
-  
-    packageInfo ? (
-        <>
-         
-            <div className="border-l-2 border-gray-200 pl-4">
-                <div className="mb-6">
-                    <p>
-                        🟢
-                        <span className="font-semibold">Picked Up</span> — Lagos
-                    </p>
-                    <p className="text-sm text-gray-500">Aug 01, 10:00 AM</p>
-                </div>
-                <div className="mb-6">
-                    <p>
-                        🟡 <span className="font-semibold">In Transit</span> —
-                        On the way to Abuja
-                    </p>
-                    <p className="text-sm text-gray-500">Aug 01, 6:00 PM</p>
-                </div>
-                <div>
-                    <p>
-                        ⚪{" "}
-                        <span className="font-semibold">
-                            Arrived at Abuja Depot
-                        </span>{" "}
-                        — Pending...
-                    </p>
-                </div>
-            </div>
-        </>
-    ) : (
-        <EmptyInfo />
-    );
-}
-*/

@@ -1,5 +1,5 @@
 export const dateFormater = date => {
-  console.log(date);
+    console.log(date);
     const now = new Date(date);
     const formatter = new Intl.DateTimeFormat("en-US", {
         year: "numeric",

@@ -4,10 +4,9 @@ export async function fetchPackage(trackingCode) {
     const { data: packageData, error } = await supabase
         .from("packages")
         .select("*")
-        .eq("tracking_code", trackingCode)
-        
+        .eq("tracking_code", trackingCode);
 
     if (error) throw error;
 
-    return packageData;
+    return packageData[0];
 }
